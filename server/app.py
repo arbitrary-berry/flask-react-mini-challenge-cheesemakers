@@ -36,6 +36,10 @@ class ProducersByID(Resource):
             producer,
             200
         )
+    def delete(self,id):
+        producer = Producer.query.filter(Producer.id == id).first()
+        if not producer:
+            abort(404, "Resource not found")
 
 api.add_resource(ProducersByID, "/producers/<int:id>")
 
